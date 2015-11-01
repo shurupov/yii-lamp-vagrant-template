@@ -53,6 +53,12 @@ sudo service apache2 restart
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
+composer global require "fxp/composer-asset-plugin:~1.0.3"
+
+cd /project
+composer install
+sudo service apache2 restart
+
 # End
 echo "Autospan server successfully installed!"
 echo "Congratulations!"
