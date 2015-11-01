@@ -9,7 +9,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'project secret key',
+            'cookieValidationKey' => 'whatisgood',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -38,6 +38,52 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+
+        'urlManager' => [
+            'showScriptName' => false,
+            'enablePrettyUrl' => true,
+            'rules' => [
+                '<controller:\w+>s' => '<controller>/index',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+            ]
+        ],
+
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'globals' => ['html' => '\yii\helpers\Html'],
+                    'uses' => ['yii\bootstrap'],
+                ],
+
+            ],
+            'defaultExtension' => /*'php'*/'twig'
+        ],
+
+
+        'assetManager' => array(
+            'converter'=>array(
+                'class'=>'nizsheanez\assetConverter\Converter',
+                'force'=>true, // true : If you want convert your sass each time without time dependency
+                'destinationDir' => 'assets', //at which folder of @webroot put compiled files
+                'parsers' => array(
+                    'less' => array( // file extension to parse
+                        'class' => 'nizsheanez\assetConverter\Less',
+                        'output' => 'css', // parsed output file type
+                        'options' => array(
+                            'auto' => true, // optional options
+                        )
+                    )
+                )
+            )
+        ),
+
     ],
     'params' => $params,
 ];
@@ -47,11 +93,13 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs' => ['192.168.*.*']
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs' => ['192.168.*.*']
     ];
 }
 

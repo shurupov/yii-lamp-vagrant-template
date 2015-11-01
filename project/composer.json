@@ -17,7 +17,13 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-twig": "*",
+        "oyejorge/less.php": "1.7.0.*",
+        "richthegeek/phpsass": "dev-master",
+        "leafo/scssphp": "dev-master",
+        "leafo/scssphp-compass": "dev-master",
+        "nizsheanez/yii2-asset-converter": "1.2.7"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

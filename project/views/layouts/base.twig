@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{{ use ('app/assets/AppAsset' )}}
+{{ register_app_asset() }}
+{{ begin_page() }}
+
+<html lang="en">
+<head>
+    <meta charset="{{ app.charset }}"/>
+    <title>{{ html.encode(this.title) }}</title>
+    {{ head() }}
+</head>
+<body>
+
+{{ begin_body() }}
+
+
+    <div class="container">
+        {{ content|raw }}
+    </div>
+{{ end_body() }}
+
+</body>
+</html>
+{{ end_page() }}
