@@ -15,7 +15,6 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@app/web-sources';
 
     public $basePath = '@webroot';
     public $baseUrl = '@web';
